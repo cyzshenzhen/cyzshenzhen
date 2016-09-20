@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" href="./js/highlight/styles/default.css">
+    <script src="./js/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
   </head>
   <body>
     <section class="page-header">
@@ -27,60 +29,49 @@
       </p>
 
       <h3>
-        演示
+        演示（离开焦点时触发）
       </h3>
-      <p>
+      <p style="background: #F0F0F0; padding: 1em;">
         文本框1：<input id="s1"/>&nbsp;&nbsp;文本框2：<input id="s2"/>
-        <script src="./js/jquery-1.11.3.js"></script>
-        <script src="./js/delaycall.js"></script>
-        <script>
-            function foo() {
-                alert('call foo()!');
-            }
-
-            $(function() {
-                $('input').delaycall({'func': foo});
-            });
-        </script>
       </p>
       <h3>
         引入资源
       </h3>
       <p>
-          <pre>
-            <script src="./jquery-1.11.3.js"></script>
-            <script src="./delaycall.js"></script>
-          </pre>
+        <pre><code class="html">&lt;script src=&quot;./jquery-1.11.3.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;./delaycall.js&quot;&gt;&lt;/script&gt;</code></pre>
       </p>
       <h3>
         JavaScript部分
       </h3>
       <p>
-         <pre>
-            <script>
-                function foo() {
-                    alert('call foo()!');
-                }
+        <pre><code class="html">&lt;script&gt;
+    function foo() {
+        alert('call foo()!');
+    }
 
-                $(function() {
-                    $('input').delaycall({'func': foo});
-                });
-            </script>
-          </pre>
+    $(function() {
+        $('input').delaycall({
+        'func': foo,               // 必填，函数名称
+        'times': 1000,             // 选填，延迟时间，单位：毫秒
+        'beforeCallClear': true,   // 选填，未执行func前，绑定事件被触发，是否清理之前定义的定时器
+        'event': 'blur',           // 选填，触发事件，默认是离开焦点时触发，依据jquery/zepto语法，如 keydown ...
+        'justNormalKeyCode': true  // 选填，event -> keydown 时，是否只支持普通按键：英文、数字
+        });
+    });
+&lt;/script&gt;</code></pre>
       </p>
       <h3>
         Html部分
       </h3>
       <p>
-        <pre>
-          文本框1：<input id="s1"/>&nbsp;&nbsp;文本框2：<input id="s2"/>
-        </pre>
+        <pre><code class="html">文本框1：&lt;input id=&quot;s1&quot;/&gt;&nbsp;&nbsp;文本框2：&lt;input id=&quot;s2&quot;/&gt;</code></pre>
       </p>
       <h3>
         GitHub Repository
       </h3>
       <p>
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;
          <a href="https://github.com/cyzshenzhen/delaycall">https://github.com/cyzshenzhen/delaycall</a>
       </p>
 
@@ -91,5 +82,16 @@
     </section>
 
   
+    <script src="./js/jquery-1.11.3.js"></script>
+    <script src="./js/delaycall.js"></script>
+    <script>
+        function foo() {
+            alert('call foo()!');
+        }
+        $(function() {
+            $('input').delaycall({'func': foo});
+        });
+    </script></p>
+
   </body>
 </html>
