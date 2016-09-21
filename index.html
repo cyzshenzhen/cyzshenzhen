@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" href="./js/sweetalert/sweetalert.css">
+    <script src="./js/sweetalert/sweetalert.min.js"></script>
     <link rel="stylesheet" href="./js/highlight/styles/default.css">
     <script src="./js/highlight/highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
@@ -29,10 +31,10 @@
       </p>
 
       <h3>
-        演示（离开焦点时触发）
+        演示（离开焦点一秒后触发）
       </h3>
       <p style="background: #F0F0F0; padding: 1em;">
-        文本框1：<input id="s1"/>&nbsp;&nbsp;文本框2：<input id="s2"/>
+        修改标题：<input id="s1"/>&nbsp;&nbsp;修改内容：<input id="s2"/>
       </p>
       <h3>
         引入资源
@@ -63,7 +65,7 @@ $(function() {
         Html部分
       </h3>
       <p>
-        <pre><code class="html">文本框1：&lt;input id=&quot;s1&quot;/&gt;&nbsp;&nbsp;文本框2：&lt;input id=&quot;s2&quot;/&gt;</code></pre>
+        <pre><code class="html">修改标题：&lt;input id=&quot;s1&quot;/&gt;&nbsp;&nbsp;修改内容：&lt;input id=&quot;s2&quot;/&gt;</code></pre>
       </p>
       <h3>
         GitHub Repository
@@ -84,7 +86,14 @@ $(function() {
     <script src="./js/delaycall.js"></script>
     <script>
         function foo() {
-            alert('call foo()!');
+            swal({
+              title: "保存成功！",
+              type: "success",
+              confirmButtonColor: "#04be02",
+              confirmButtonText: "确定",
+              closeOnConfirm: true,
+              html: false
+            });
         }
         $(function() {
             $('input').delaycall({'func': foo});
